@@ -1,10 +1,13 @@
+import PageContainer from '@/components/PageContainer/PageContainer'
 import React from 'react'
 
 const Home = () => {
     return (
-        <div>
-            <h1>Home</h1>
-        </div>
+        <>
+            <PageContainer hCenter={false}>
+                <h1>Home</h1>
+            </PageContainer>
+        </>
     )
 }
 

@@ -13,10 +13,11 @@ const Input = (props) => {
                             type={data.type} 
                             id={data.label} 
                             placeholder={data.placeholder} 
-                            value={data.value} 
+                            value={data.value}
+                            onChange={data.onChange}
                             required={data.required} 
                             disabled={data.disabled}
-                            className='px-3 rounded-xl'
+                            className='px-3 rounded-xl focus-visible:outline-2 focus-visible:outline-primaryColour'
                             style={{minWidth:"180px", minHeight:"46px"}}
                         />
                     </div>

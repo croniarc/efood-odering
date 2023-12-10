@@ -1,10 +1,10 @@
-"use client"
-import {useState} from 'react'
+'use client'
+import { useState } from 'react'
 import Form from '@/components/Form/Form'
-import Card from '@/components/Card/Card'
 import PageContainer from '@/components/PageContainer/PageContainer'
-const login = () => {
-    
+import Card from '@/components/Card/Card'
+
+const page = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     
@@ -14,7 +14,7 @@ const login = () => {
     }
 
     const data= {
-            formHeading: 'Login',
+            formHeading: 'Register',
             formFields: [
                 {
                     type: 'email',
@@ -36,35 +36,29 @@ const login = () => {
             formActions: [
                 {
                     type: 'submitButton',
-                    text: 'Login',
+                    text: 'Register',
                     func: handleSubmit,
                     disabled: (email && password)? false : true
                 }
             ],
             actions: [
                 {
-                    subHeading: 'OR LOGIN WITH',
-                    type: 'secondaryButton',
-                    text: 'Google',
-                },
-                {
-                    subHeading: 'OR',
+                    subHeading: 'OR LOGIN',
                     type: 'linkButton',
-                    link: 'register',
-                    text: 'Register',
+                    link: 'login',
+                    text: 'Login',
                 }
             ]
         }
-    
+
     return (
         <>
-            <PageContainer hCenter={true}>
+            <PageContainer>
                 <Form formData={data}/>
                 <Card cardData={data.actions}/>
             </PageContainer>
         </>
-
     )
 }
 
-export default login
+export default page
