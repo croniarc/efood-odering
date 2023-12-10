@@ -1,10 +1,12 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Form from '@/components/Form/Form'
 import PageContainer from '@/components/PageContainer/PageContainer'
 import Card from '@/components/Card/Card'
 
 const page = () => {
+    const [formData, setFormData] = useState()
+    const [cardData, setCardData] = useState()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     
@@ -12,36 +14,46 @@ const page = () => {
         e.preventDefault()
         console.log('Submit Button Clicked')
     }
-
-    const data= {
-            formHeading: 'Register',
-            formFields: [
+    useEffect(() => {
+        setFormData({
+            data : [
                 {
-                    type: 'email',
-                    placeholder: 'Email',
-                    required: true,
-                    disabled: false,
-                    value: email,
-                    onChange: (e) => setEmail(e.target.value)
+                    formHeading: 'Register'
                 },
                 {
-                    type: 'password',
-                    placeholder: 'Password',
-                    required: true,
-                    disabled: false,
-                    value: password,
-                    onChange: (e) => setPassword(e.target.value)
-                }
-            ],
-            formActions: [
+                    formFields: [
+                        {
+                            type: 'email',
+                            placeholder: 'Email',
+                            required: true,
+                            disabled: false,
+                            value: email,
+                            onChange: (e) => setEmail(e.target.value)
+                        },
+                        {
+                            type: 'password',
+                            placeholder: 'Password',
+                            required: true,
+                            disabled: false,
+                            value: password,
+                            onChange: (e) => setPassword(e.target.value)
+                        }
+                    ]
+                },
                 {
-                    type: 'submitButton',
-                    text: 'Register',
-                    func: handleSubmit,
-                    disabled: (email && password)? false : true
+                    formActions: [
+                        {
+                            type: 'submitButton',
+                            text: 'Register',
+                            onSubmit: handleSubmit,
+                            disabled: (email && password)? false : true
+                        }
+                    ]
                 }
-            ],
-            actions: [
+            ]
+        })
+        setCardData({
+            data: [
                 {
                     subHeading: 'OR LOGIN',
                     type: 'linkButton',
@@ -49,13 +61,14 @@ const page = () => {
                     text: 'Login',
                 }
             ]
-        }
+        })
+    }, [email, password])
 
     return (
         <>
             <PageContainer>
-                <Form formData={data}/>
-                <Card cardData={data.actions}/>
+                <Form {...formData} />
+                <Card {...cardData} />
             </PageContainer>
         </>
     )

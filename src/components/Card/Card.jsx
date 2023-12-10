@@ -5,41 +5,49 @@ import ErrorView from '../ErrorView/ErrorView'
 import Button from '../Button/Button'
 import SectionHeadings from '../SectionHeadings/SectionHeadings'
 
-const Card = (props) => {
+const Card = ({data}) => {
     return (
         <div className=' flex flex-col gap-4 bg-backgroundColour3 p-8 rounded-3xl hover:shadow-xl ' style={{minWidth: "219px"}} >
             {
                 <>
                     {
-                        props.cardData.map((data, index) => (
-                            <div key={index}>
-                                <div className='flex gap-4 flex-col items-center justify-between h-full w-full '>
-                                    {
-                                        (data.image || data.heading || data.subHeading) && <div>
-                                        {
-                                            data.image && (
-                                                <Image src={data.image} width={500} height={500} alt={`${data.image}`} />
-                                            )
-                                        }
-                                        {(data.heading || data.subHeading) && <SectionHeadings heading={data.heading} subHeading={data.subHeading} />}
+                        data ? (<>
+                            {
+                                data.map((data, index) => (
+                                    <div key={index}>
+                                        <div className='flex gap-4 flex-col items-center justify-between h-full w-full '>
+                                            {
+                                                (data.image || data.heading || data.subHeading) && <div>
+                                                {
+                                                    data.image && (
+                                                        <Image src={data.image} width={500} height={500} alt={`${data.image}`} />
+                                                    )
+                                                }
+                                                {(data.heading || data.subHeading) && <SectionHeadings heading={data.heading} subHeading={data.subHeading} />}
+                                            </div>
+        
+                                            }
+                                            <div className='flex flex-col gap-2'>
+                                                {
+                                                    data.description && (
+                                                        <p>{data.description}</p>
+                                                    )
+                                                }
+                                                {
+                                                    (
+                                                        <Button {...data} />
+                                                    )
+                                                }
+                                            </div>
+                                        </div>
                                     </div>
-
-                                    }
-                                    <div className='flex flex-col gap-2'>
-                                        {
-                                            data.description && (
-                                                <p>{data.description}</p>
-                                            )
-                                        }
-                                        {
-                                            (
-                                                <Button {...data} />
-                                            )
-                                        }
-                                    </div>
-                                </div>
-                            </div>
-                        ))
+                                ))
+                            }
+                        </>) : (
+                            <>
+                                <ErrorView/>
+                            </>
+                        ) 
                     }
                 </> 
             }

@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 body {
-    @apply h-screen w-screen bg-backgroundColour text-textcolour;
+    @apply flex flex-col items-center justify-between h-screen w-screen bg-backgroundColour text-textcolour;
 }
 
 * {

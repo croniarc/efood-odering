@@ -3,7 +3,7 @@ import NavBar from '../Navbar/NavBar'
 
 const PageContainer = ({ children, hCenter }) => {
     return (
-        <section className={`flex gap-6 items-center ${ hCenter && 'justify-center'} flex-col w-screen h-screen`}>
+        <section className={`flex gap-6 items-center flex-col`}>
             { children }
         </section>
     )
